@@ -1,0 +1,95 @@
+#pd {
+  display: flex;
+}
+
+#imgGallery {
+  display: flex;
+}
+
+#thumbnails {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: fit-content;
+}
+
+#thumbnails img {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 2px;
+  cursor: pointer;
+  background-color: #ffffff;
+  transition:
+    border-color 0.2s ease,
+    transform 0.1s ease;
+}
+
+#thumbnails img:hover {
+  border-color: #9f2089;
+}
+
+#thumbnails img.active {
+  border: 2px solid #9f2089;
+}
+
+#mainImg_div {
+  width: 500px;
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  border: 2px solid rgb(201, 201, 201);
+  border-radius: 15px;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+#mainImg {
+  height: 500px;
+}
+
+#pd_description {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid rgb(178, 178, 178);
+  border-radius: 15px;
+  padding: 10px;
+  margin-right: 10px;
+}
+
+#pd_title {
+  color: rgb(51, 51, 51);
+  font-family: Arial, Helvetica, sans-serif;
+  border-bottom: 1px solid grey;
+  padding: 5px;
+}
+ 
+#buying_buttons button{
+  border: 0px;
+  padding: 10px;
+  width: 300px;
+  margin: 15px;
+  border-radius: 20px;
+  font-size: medium;
+  background-color: rgb(169, 81, 81);
+  color: white;
+}
+
+#pd_text{
+  border-bottom: 1px solid rgb(50, 49, 49);
+  border-top: 1px solid rgb(50, 49, 49);
+  padding: 5px;
+}
+
+#pd_price{
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+#rl{
+  border-top: 1px solid grey;
+}

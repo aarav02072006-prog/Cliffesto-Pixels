@@ -1,4 +1,4 @@
-/* Global Reset and Page Layout */
+/* Global Reset */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -9,7 +9,7 @@ body {
     height: 100vh;
 }
 
-/* Main Signup Card Container */
+/* Auth Card Container */
 .signup-container {
     background-color: #ffffff;
     padding: 35px 30px;
@@ -20,7 +20,6 @@ body {
     text-align: center;
 }
 
-/* Logo Styling */
 #meesho_logo_signup_page {
     width: 110px;
     height: auto;
@@ -35,7 +34,7 @@ body {
     margin-bottom: 20px;
 }
 
-/* Form Grouping and Spacing */
+/* Form Styles */
 #signup-form {
     margin-bottom: 20px;
     text-align: left;
@@ -49,7 +48,6 @@ body {
     font-weight: bold;
 }
 
-/* Mobile & Password Input Fields */
 #signup-form input[type="tel"],
 #signup-form input[type="password"] {
     width: 100%;
@@ -64,10 +62,10 @@ body {
 }
 
 #signup-form input:focus {
-    border-color: #f43397; /* Meesho Pink Brand Accent */
+    border-color: #f43397; /* Meesho Pink Accent */
 }
 
-/* Primary Submit Button */
+/* Primary Button */
 .submit-btn {
     width: 100%;
     padding: 12px;
@@ -86,7 +84,7 @@ body {
     background-color: #d81b80;
 }
 
-/* Account Prompt / Secondary Section */
+/* Switch Section */
 .login-btn {
     margin-top: 20px;
     padding-top: 15px;
@@ -101,7 +99,6 @@ body {
     margin-bottom: 10px;
 }
 
-/* Secondary Action Button */
 #login-button {
     width: 100%;
     padding: 10px;
@@ -119,7 +116,7 @@ body {
     background-color: #fdf2f8;
 }
 
-/* Terms and Conditions Footer Text */
+/* Footer Terms */
 .signup-container p.terms {
     font-size: 12px;
     color: #888888;

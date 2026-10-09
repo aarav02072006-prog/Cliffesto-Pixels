@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meesho - Product Details</title>
+    <link rel="stylesheet" href="styles/product_page.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" type="image/x-icon" href="assets/logo.ico" />
+  </head>
+
+  <body>
+    <header>
+        <div class="header-left">
+            <img id="meesho" src="assets/logo.webp" alt="Meesho Logo">
+            <h1><a href="index.html" style="text-decoration: none; color: white;">Meesho</a></h1>
+        </div>
+
+        <form id="search">
+    <input type="text" id="searchInput" placeholder="Search for products, brands and more">
+    <button type="submit">Search</button>
+</form>
+
+
+        <div class="header-right">
+            <div class="dropdown-content">
+                    <select id="categoryFilter">
+                        <option value="By price">By Price</option>
+                        <option value="By Discount">By discount</option>"
+                        </select>
+                </div>
+            <h2 id="add">NIT Uttarakhand</h2>
+            <img class="icon-btn" src="profile.jpeg" alt="Profile">
+            <a href="cart.html">
+    <img class="icon-btn" src="cart.png" alt="Cart">
+</a>
+
+        </div>
+    </header>
+
+    <main id="main-body">
+      <!-- product details section -->
+      <div id="pd">
+        <!-- image gallery -->
+        <div id="imgGallery">
+          <div id="thumbnails">
+            <!-- Dynamic thumbnails will load here -->
+          </div>
+
+          <div id="mainImg_div">
+            <img src="" alt="Product Image" id="mainImg" />
+          </div>
+        </div>
+
+        <!-- product details -->
+        <div id="pd_description">
+          <h2 id="pd_title">Loading product details...</h2>
+
+          <div id="pd_price">
+            <h1 id="price_val" style="color: black; display: inline">&#8377; --</h1>
+            <del id="orig_price_val" style="text-decoration: line-through; color: rgb(165, 97, 97); display: inline; margin-left: 15px;"></del>
+            <h3 id="discount_val" style="color: green; display: inline; margin: 10px;"></h3>
+          </div>
+
+          <p id="pd_text">
+            Loading description...
+          </p>
+
+          <div id="buying_buttons">
+            <button id="buyNowBtn" onclick="buyNow()">Buy Now</button>
+            <button id="addToCartBtn" onclick="addToCartFromPage()">Add To Cart</button>
+          </div>
+
+          <h4 style="border-top: 1px solid grey; padding: 5px;">Reviews: </h4>
+          <div id="rl">
+            <!-- rating and reviews section -->
+          </div>
+
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <h3>About Us</h3>
+      <h3>Contact Us</h3>
+      <p>Email: support@meesho.com</p>
+      <address>
+        Meesho Technologies Pvt. Ltd. 123, Meesho Street, City, State
+      </address>
+      <p>&copy; 2026 Meesho. All rights reserved.</p>
+    </footer>
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="scripts/product_page.js"></script>
+  </body>
+</html>

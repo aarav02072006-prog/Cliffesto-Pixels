@@ -1,4 +1,4 @@
-/* Global Reset and Page Layout */
+/* Global Reset */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -9,8 +9,8 @@ body {
     height: 100vh;
 }
 
-/* Main Login Card Container */
-.login-container {
+/* Auth Card Container */
+.signup-container {
     background-color: #ffffff;
     padding: 35px 30px;
     border-radius: 12px;
@@ -20,17 +20,21 @@ body {
     text-align: center;
 }
 
-
-/* Logo Styling */
-#meesho_logo_login_page {
+#meesho_logo_signup_page {
     width: 110px;
     height: auto;
     display: block;
-    margin: 0 auto 24px auto;
+    margin: 0 auto 20px auto;
     border-radius: 8px;
 }
 
-/* Form Grouping and Spacing */
+.signup-container h2 {
+    font-size: 18px;
+    color: #333333;
+    margin-bottom: 20px;
+}
+
+/* Form Styles */
 #login-form {
     margin-bottom: 20px;
     text-align: left;
@@ -44,8 +48,8 @@ body {
     font-weight: bold;
 }
 
-/* Mobile Number Input Field */
-#phone-input {
+#login-form input[type="tel"],
+#login-form input[type="password"] {
     width: 100%;
     padding: 12px;
     border: 1px solid #d1d5db;
@@ -57,12 +61,11 @@ body {
     transition: border-color 0.2s ease;
 }
 
-#phone-input:focus {
-    border-color: #f43397;
-    /* Meesho Pink Brand Accent */
+#login-form input:focus {
+    border-color: #f43397; /* Meesho Pink Accent */
 }
 
-/* Primary Submit Button */
+/* Primary Button */
 .submit-btn {
     width: 100%;
     padding: 12px;
@@ -74,28 +77,28 @@ body {
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.2s ease;
+    margin-top: 5px;
 }
 
 .submit-btn:hover {
     background-color: #d81b80;
 }
 
-/* Account Prompt / Secondary Section */
-.login-container>div:nth-of-type(2) {
+/* Switch Section */
+.login-btn {
     margin-top: 20px;
     padding-top: 15px;
     border-top: 1px solid #eaeaea;
     text-align: center;
 }
 
-.login-container>div:nth-of-type(2) label {
+.login-btn label {
     font-size: 13px;
     color: #666666;
     display: block;
     margin-bottom: 10px;
 }
 
-/* Signup Button Styled as a Clean Action Button */
 #signup-button {
     width: 100%;
     padding: 10px;
@@ -111,22 +114,22 @@ body {
 
 #signup-button:hover {
     background-color: #fdf2f8;
-    /* Soft pink tint on hover */
 }
 
-/* Terms and Conditions Footer Text */
-.login-container p {
+/* Footer Terms */
+.signup-container p.terms {
     font-size: 12px;
     color: #888888;
     margin-top: 25px;
     line-height: 1.4;
+    text-align: center;
 }
 
-.login-container p a {
+.signup-container p.terms a {
     color: #f43397;
     text-decoration: none;
 }
 
-.login-container p a:hover {
+.signup-container p.terms a:hover {
     text-decoration: underline;
 }

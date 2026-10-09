@@ -1,0 +1,80 @@
+body {
+    background-color: gray;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.meesho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    padding: 10px 20px;
+}
+
+.head {
+    display: flex;
+    align-items: center;
+    gap: 20px
+}
+
+.seller {
+    display: flex;
+    font-size: 30px;
+    gap: 25px;
+}
+
+.seller a {
+    color: inherited;
+    text-decoration: none;
+}
+
+.electronics {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 20px;
+    font-weight: bold;
+}
+
+.help h {
+    font-size: medium;
+}
+
+.help p {
+    font-size: 30 px;
+    flood-color: black;
+}
+
+.big {
+    display: flex;
+}
+
+.big a {
+    text-decoration: none;
+    color: inherited;
+}
+
+.big>div {
+    text-decoration-color: none;
+    background-color: white;
+}
+
+.help h {
+    font-size: medium;
+}
+
+.help,
+.pi {
+    flex: 1;
+}
+
+.pi {
+    justify-content: flex-start;
+    align-items: center;
+}
+
+h6 {
+    font-size: large;
+
+}

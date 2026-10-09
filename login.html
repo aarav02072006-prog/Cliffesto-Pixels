@@ -2,42 +2,46 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sign In - Meesho</title>
-  <link rel="stylesheet" href="styles/login.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Log In - Meesho</title>
+    <link rel="stylesheet" href="styles/login.css" />
+    <link rel="icon" type="image/x-icon" href="assets/logo.ico" />
 </head>
 
 <body>
-  <div class="login-container">
-    <!-- Logo -->
-    <img src="assets/logo.jpg" alt="Meesho Logo" id="meesho_logo_login_page" />
-    <h2>Log in to view your profile</h2>
-    <form id="login-form">
-      <div id="input-group">
-        <label for="phone">Enter Your Mobile No. </label>
-        <input type="tel" id="phone" placeholder="Enter Your Mobile No." />
-        <label for="pass">Enter Your Password </label>
-        <input type="password" id="pass" placeholder="Enter Your Password" />
-        <div>
-          <button id="logSub" class="Submit"><a href="signup.html">Submit</a></button>
-        </div>
-      </div>
+    <div class="signup-container">
+        <!-- Meesho Logo -->
+        <img src="assets/logo.jpg" alt="Meesho Logo" id="meesho_logo_signup_page" />
+        <h2>Log in to view your profile</h2>
+        
+        <form id="login-form" onsubmit="handleLogin(event)">
+            <div id="input-group">
+                <label for="phone">Enter Your Mobile No.</label>
+                <input type="tel" id="phone" placeholder="Enter Your Mobile No." required />
+                
+                <label for="pass">Enter Your Password</label>
+                <input type="password" id="pass" placeholder="Enter Your Password" required />
+                
+                <button type="submit" id="loginSub" class="submit-btn">Log In</button>
+            </div>
 
-      <div class="signup-btn">
-        <label for="signup_button">Don't Have an Account?</label>
-        <div>
-          <button>Sign Up</button>
-        </div>
-      </div>
-      <p class="terms">
-        Terms And Conditions Apply,
-        <a href="terms_and_conditions.html" target="_blank">Click Here</a>
-      </p>
-      <div></div>
-    </form>
-  </div>
-  <script src="script.js"></script>
+            <div class="login-btn">
+                <label>Don't have an account?</label>
+                <button type="button" id="signup-button" onclick="window.location.href='signup.html'">Sign Up</button>
+            </div>
+
+            <p class="terms">
+                Terms And Conditions Apply,
+                <a href="terms_and_conditions.html" target="_blank">Click Here</a>
+            </p>
+        </form>
+    </div>
+    
+    <!-- Firebase Compatibility SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shopping Cart - Meesho</title>
+    <link rel="stylesheet" href="styles/cart.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" type="image/x-icon" href="assets/logo.ico" />
+  </head>
+  <body>
+    <header>
+      <div class="header-left">
+        <img id="meesho" src="assets/logo.webp" alt="Meesho Logo" />
+        <h1>
+          <a href="index.html" style="text-decoration: none; color: white"
+            >Meesho</a
+          >
+        </h1>
+      </div>
+
+      <form id="search">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Search for products, brands and more"
+        />
+        <button type="submit">Search</button>
+      </form>
+
+      <div class="header-right">
+        <div class="dropdown-content">
+          <select id="categoryFilter">
+            <option value="By price">By Price</option>
+            <option value="By Discount">By discount</option>
+            "
+          </select>
+        </div>
+        <h2 id="add">NIT Uttarakhand</h2>
+        <img class="icon-btn" src="profile.jpeg" alt="Profile" />
+        <a href="cart.html">
+          <img class="icon-btn" src="cart.png" alt="Cart" />
+        </a>
+      </div>
+    </header>
+
+    <main class="cart-container">
+      <div class="cart-left">
+        <h2>My Cart (<span id="cartCount">0</span>)</h2>
+        <div id="cartItemsList"></div>
+      </div>
+
+      <div class="cart-right">
+        <div class="price-summary">
+          <h3>Price Details</h3>
+          <div class="summary-row">
+            <span>Total Product Price</span>
+            <span id="totalPrice">₹0</span>
+          </div>
+          <div class="summary-row">
+            <span>Total Discount</span>
+            <span id="totalDiscount" class="green">-₹0</span>
+          </div>
+          <div class="summary-row">
+            <span>Delivery Charges</span>
+            <span class="green">FREE</span>
+          </div>
+          <hr />
+          <div class="summary-row total-row">
+            <span>Order Total</span>
+            <span id="finalAmount">₹0</span>
+          </div>
+          <button id="purchaseBtn" onclick="handlePurchase()">
+            Purchase Now
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="script.js"></script>
+    <script>
+      async function renderCart() {
+        const cartItemsList = document.getElementById("cartItemsList");
+        const cartCount = document.getElementById("cartCount");
+        const totalPriceEl = document.getElementById("totalPrice");
+        const totalDiscountEl = document.getElementById("totalDiscount");
+        const finalAmountEl = document.getElementById("finalAmount");
+
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        cartCount.textContent = cart.reduce(
+          (sum, item) => sum + item.quantity,
+          0,
+        );
+
+        if (cart.length === 0) {
+          cartItemsList.innerHTML = `<div class="empty-cart"><p>Your cart is empty.</p><a href="meesho.html">Start Shopping</a></div>`;
+          totalPriceEl.textContent = "₹0";
+          totalDiscountEl.textContent = "-₹0";
+          finalAmountEl.textContent = "₹0";
+          return;
+        }
+
+        cartItemsList.innerHTML = "";
+        let originalTotal = 0;
+        let discountTotal = 0;
+
+        for (const item of cart) {
+          try {
+            const doc = await db.collection("products").doc(item.id).get();
+            if (doc.exists) {
+              const product = doc.data();
+              const mainImg =
+                product.images && product.images.length > 0
+                  ? product.images[0]
+                  : "tshirt.jpeg";
+              const price = product.price || 0;
+              const discount = product.discount || 0;
+              const discountedPrice = Math.round(
+                price - price * (discount / 100),
+              );
+
+              originalTotal += price * item.quantity;
+              discountTotal += (price - discountedPrice) * item.quantity;
+
+              const itemHTML = `
+                            <div class="cart-item">
+                                <img src="${mainImg}" alt="${product.name}" class="item-img">
+                                <div class="item-details">
+                                    <h4>${product.name}</h4>
+                                    <p class="item-price">₹${discountedPrice} <span class="old-price">₹${price}</span> <span class="discount-badge">${discount}% OFF</span></p>
+                                    <div class="quantity-controls">
+                                        <button onclick="updateQuantity('${item.id}', -1)">-</button>
+                                        <span>${item.quantity}</span>
+                                        <button onclick="updateQuantity('${item.id}', 1)">+</button>
+                                    </div>
+                                </div>
+                                <button class="remove-btn" onclick="removeFromCart('${item.id}')">Remove</button>
+                            </div>
+                        `;
+              cartItemsList.innerHTML += itemHTML;
+            }
+          } catch (e) {
+            console.error(e);
+          }
+        }
+
+        const finalTotal = originalTotal - discountTotal;
+        totalPriceEl.textContent = `₹${originalTotal}`;
+        totalDiscountEl.textContent = `-₹${discountTotal}`;
+        finalAmountEl.textContent = `₹${finalTotal}`;
+      }
+
+      function updateQuantity(productId, change) {
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const index = cart.findIndex((item) => item.id === productId);
+        if (index !== -1) {
+          cart[index].quantity += change;
+          if (cart[index].quantity <= 0) {
+            cart.splice(index, 1);
+          }
+          localStorage.setItem("cart", JSON.stringify(cart));
+          renderCart();
+        }
+      }
+
+      function removeFromCart(productId) {
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        cart = cart.filter((item) => item.id !== productId);
+        localStorage.setItem("cart", JSON.stringify(cart));
+        renderCart();
+      }
+
+      async function handlePurchase() {
+        const userJson = localStorage.getItem("meeshoUser");
+        if (!userJson) {
+          alert("Please log in to complete your purchase!");
+          window.location.href = "login.html";
+          return;
+        }
+
+        const user = JSON.parse(userJson);
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+        if (cart.length === 0) {
+          alert("Your cart is empty!");
+          return;
+        }
+
+        const address = prompt(
+          "Enter your delivery address:",
+          "NIT Uttarakhand Campus, Srinagar Garhwal",
+        );
+        if (!address) {
+          alert("Delivery address is required to place order.");
+          return;
+        }
+
+        const purchaseBtn = document.getElementById("purchaseBtn");
+        purchaseBtn.disabled = true;
+        purchaseBtn.textContent = "Processing Order...";
+
+        try {
+          let orderItems = [];
+          let totalAmount = 0;
+
+          for (const item of cart) {
+            const doc = await db.collection("products").doc(item.id).get();
+            if (doc.exists) {
+              const product = doc.data();
+              const price = product.price || 0;
+              const discount = product.discount || 0;
+              const finalPrice = Math.round(price - price * (discount / 100));
+
+              orderItems.push({
+                productId: item.id,
+                name: product.name,
+                price: finalPrice,
+                quantity: item.quantity,
+                image:
+                  product.images && product.images.length > 0
+                    ? product.images[0]
+                    : "",
+              });
+
+              totalAmount += finalPrice * item.quantity;
+            }
+          }
+
+          const orderData = {
+            userPhone: user.phone,
+            items: orderItems,
+            totalAmount: totalAmount,
+            deliveryAddress: address,
+            status: "ORDER_PLACED",
+            createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+          };
+
+          const docRef = await db.collection("orders").add(orderData);
+
+          localStorage.setItem("lastOrderTotal", totalAmount);
+          localStorage.removeItem("cart");
+
+          window.location.href = `success.html?orderId=${docRef.id}`;
+        } catch (error) {
+          console.error("Error placing order:", error);
+          alert("Failed to place order: " + error.message);
+          purchaseBtn.disabled = false;
+          purchaseBtn.textContent = "Purchase Now";
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", renderCart);
+    </script>
+  </body>
+</html>

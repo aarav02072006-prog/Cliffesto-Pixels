@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Successful - Meesho</title>
+    <link rel="stylesheet" href="styles/success.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="assets/logo.ico" />
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <img id="meesho" src="assets/logo.webp" alt="Meesho Logo">
+            <h1><a href="index.html" style="text-decoration: none; color: white;">Meesho</a></h1>
+        </div>
+
+        <form id="search">
+    <input type="text" id="searchInput" placeholder="Search for products, brands and more">
+    <button type="submit">Search</button>
+</form>
+
+
+        <div class="header-right">
+            <div class="dropdown-content">
+                    <select id="categoryFilter">
+                        <option value="By price">By Price</option>
+                        <option value="By Discount">By discount</option>"
+                        </select>
+                </div>
+            <h2 id="add">NIT Uttarakhand</h2>
+            <img class="icon-btn" src="profile.jpeg" alt="Profile">
+            <a href="cart.html">
+    <img class="icon-btn" src="cart.png" alt="Cart">
+</a>
+
+        </div>
+    </header>
+
+    <main class="success-container">
+        <div class="success-card">
+            <div class="icon-circle">
+                <svg viewBox="0 0 24 24" class="check-icon">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+            </div>
+            
+            <h2>Order Placed Successfully!</h2>
+            <p class="sub-text">Thank you for shopping with us. Your order has been confirmed.</p>
+            
+            <div class="order-details-box">
+                <div class="detail-row">
+                    <span>Order ID:</span>
+                    <strong id="orderIdDisplay">#FETCHING...</strong>
+                </div>
+                <div class="detail-row">
+                    <span>Estimated Delivery:</span>
+                    <strong>3 - 5 Business Days</strong>
+                </div>
+                <div class="detail-row">
+                    <span>Payment Mode:</span>
+                    <strong>Cash on Delivery (COD)</strong>
+                </div>
+                <div class="detail-row">
+                    <span>Amount Paid:</span>
+                    <strong id="totalAmountDisplay">₹0</strong>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <a href="index.html" class="btn primary-btn">Continue Shopping</a>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="script.js"></script>
+    <script>
+        async function loadOrderSummary() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const orderId = urlParams.get('orderId');
+
+            const orderIdEl = document.getElementById('orderIdDisplay');
+            const totalAmountEl = document.getElementById('totalAmountDisplay');
+
+            if (!orderId) {
+                orderIdEl.textContent = '#' + Math.floor(100000 + Math.random() * 900000);
+                totalAmountEl.textContent = '₹' + (localStorage.getItem('lastOrderTotal') || '0');
+                return;
+            }
+
+            orderIdEl.textContent = '#' + orderId;
+
+            try {
+                const doc = await db.collection("orders").doc(orderId).get();
+                if (doc.exists) {
+                    const data = doc.data();
+                    totalAmountEl.textContent = '₹' + data.totalAmount;
+                }
+            } catch (error) {
+                console.error("Error fetching order details:", error);
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", loadOrderSummary);
+    </script>
+</body>
+</html>

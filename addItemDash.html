@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Log In - Meesho</title>
+    <link rel="stylesheet" href="styles/addItemDash.css" />
+    <link rel="icon" type="image/x-icon" href="assets/logo.ico" />
+</head>
+
+<body>
+    <div class="aidDash">
+        <!-- Meesho Logo -->
+        <img src="assets/logo.jpg" alt="Meesho Logo" id="meesho_logo_signup_page" />
+        <h2>Add new product</h2>
+        
+        <form id="addItem" onsubmit="handleAddProduct(event)">
+            <div id="input-group">
+
+                <label for="name">Name of the product</label>
+                <input type="text" id="name" placeholder="Enter Product Name" required />
+                
+                <label for="price">Enter Your Price</label>
+                <input type="number" id="price" placeholder="Enter the Price" required />
+                
+                <label for="discount">Enter the discount</label>
+                <input type="number" id="discount" placeholder="Enter the discount" required />
+
+                <label for="img1">Enter first image URL</label>
+                <input type="text" id="img1" placeholder="Enter first image URL" required />
+
+                <label for="img2">Enter second image URL</label>
+                <input type="text" id="img2" placeholder="Enter second image URL" required />
+
+                <label for="img3">Enter third image URL</label>
+                <input type="text" id="img3" placeholder="Enter third image URL" required />
+
+                <label for="img4">Enter fourth image URL</label>
+                <input type="text" id="img4" placeholder="Enter fourth image URL" required />
+
+                <button type="submit" id="submitproduct" class="submit-btn">Add Product</button>
+                
+            </div>
+        </form>
+    </div>
+    
+    <!-- Firebase Compatibility SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

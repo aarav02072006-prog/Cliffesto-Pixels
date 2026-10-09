@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>MEESHO</title>
+</head>
+<body>
+
+    <header>
+        <div class="header-left">
+            <img id="meesho" src="assets/logo.webp" alt="Meesho Logo">
+            <h1>MEESHO</h1>
+        </div>
+
+        <form id="search">
+            <input type="text" id="searchInput" placeholder="Search for products, brands and more">
+            <button type="submit">Search</button>
+        </form>
+
+        <div class="header-right">
+            <div class="dropdown-content">
+                <select id="categoryFilter">
+                    <option selected value="none">No sort</option>
+                    <option value="By price">By Price</option>
+                    <option value="By Discount">By discount</option>
+                </select>
+            </div>
+            <h2 id="add">NIT Uttarakhand</h2>
+            <img class="icon-btn" src="profile.jpeg" alt="Profile">
+            <a href="cart.html">
+                <img class="icon-btn" src="cart.png" alt="Cart">
+            </a>
+        </div>
+    </header>
+
+    <div>
+        <img class="banner-img" src="sale.PNG" alt="Sale Banner">
+    </div>
+
+
+
+
+    <!-- DYNAMIC PRODUCTS CONTAINER -->
+    <div id="productGrid" class="products-container">
+        <!-- Dynamic product cards will be injected here via Firebase -->
+    </div>
+    <br>
+    <footer>
+        <div>
+            <img class="banner-img" src="watch.jpeg" alt="Sale Banner">
+        </div>
+        <h3>About Us</h3>
+        <h3>Contact Us</h3>
+        <p>Email: support@meesho.com</p>
+        <address> 
+            Meesho Technologies Pvt. Ltd.
+            123, Meesho Street, City, State
+        </address>
+        <address>
+            Registered Office: 3rd Floor, Wing-E, Helios Business Park, <br> Kadubeesanahalli Village, Varthur Hobli, Outer Ring Road, Bengaluru, Karnataka, 560103, India 
+        </address>
+        <p>&copy; 2026 Meesho. All rights reserved.</p>
+    </footer>
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
