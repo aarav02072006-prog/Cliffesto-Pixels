@@ -1,0 +1,21 @@
+header{
+    border-style: black 5px;
+    background-color: rgb(92, 101, 175);
+    size: 50vw;
+    align-items: center;
+    overflow: hidden;
+    
+    corner: round 10px;;
+}
+#meesho{
+    align-items: start;
+    justify-content: start;
+}
+#location{
+    align-items: end;
+    float: right;
+    justify-content: end;
+}
+#search{
+    
+}
