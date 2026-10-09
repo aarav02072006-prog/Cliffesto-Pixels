@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up - Meesho</title>
+    <link rel="stylesheet" href="styles/login.css" />
+</head>
+
+<body>
+    <div class="signup-container">
+        <!-- Logo -->
+        <img src="assets/logo.jpg" alt="Meesho Logo" id="meesho_logo_signup_page" />
+        <h2>Create an account</h2>
+        
+        <!-- FIXED: Triggers handleRegister on submit -->
+        <form id="signup-form" onsubmit="handleRegister(event)">
+            <div id="input-group">
+                <label for="phone">Enter Your Mobile No.</label>
+                <input type="tel" id="phone" placeholder="Enter Your Mobile No." required />
+                
+                <label for="pass">Create Password</label>
+                <input type="password" id="pass" placeholder="Create Password" required />
+                
+                <button type="submit" id="signSub" class="submit-btn">Sign Up</button>
+            </div>
+
+            <div class="login-btn">
+                <label>Already have an account?</label>
+                <button type="button" id="login-button" onclick="window.location.href='login.html'">Log In</button>
+            </div>
+
+            <p class="terms">
+                Terms And Conditions Apply,
+                <a href="terms_and_conditions.html" target="_blank">Click Here</a>
+            </p>
+        </form>
+    </div>
+    
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
